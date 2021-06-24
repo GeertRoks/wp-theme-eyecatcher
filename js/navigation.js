@@ -96,4 +96,20 @@
 			menuItem.classList.toggle( 'focus' );
 		}
 	}
+
+
+}() );
+
+(function() {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".main-navigation");
+    
+    
+    function toggleMobileMenu() {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("toggled");
+    }
+
+    hamburger.addEventListener("click", toggleMobileMenu);
+
 }() );

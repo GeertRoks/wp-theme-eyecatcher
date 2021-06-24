@@ -29,11 +29,17 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Normalize
 	- Box sizing
 # Base
+    - Colors
 	- Typography
 	- Elements
 	- Links
 	- Forms
 ## Layouts
+    - Header
+    - Footer
+    - Front page
+    - About
+    - Single
 # Components
 	- Navigation
 	- Posts and pages
@@ -394,6 +400,25 @@ html {
 # Base
 --------------------------------------------------------------*/
 
+/* Colors
+--------------------------------------------- */
+:root {
+    --clr-light: #fafbfc;
+    --clr-primary: #c74e43;
+    --clr-accent-light: #fbb323;
+    --clr-accent-dark: #748181;
+    --clr-dark: #161B27;
+
+    --ff-primary: "Roboto", sans-serif;
+    --ff-accent: "Playfair Display", serif;
+
+    --w-mobile-only: 599px; /* mobile portrait: 0 to 599px */
+    --w-tablet-portrait-up: 600px; /* tablet portrait + mobile landscape: 600px to 899px */
+    --w-tablet-landscape-up: 900px; /* small laptops + tablet landscape: 900px to 1199px */
+    --w-laptop-up: 1200px; /* laptops: 1200px to 1799px */
+    --w-desktop-up: 1800px; /* big desktops: 1800px and up */
+}
+
 /* Typography
 --------------------------------------------- */
 body,
@@ -533,11 +558,8 @@ table {
 /* Links
 --------------------------------------------- */
 a {
-	color: #4169e1;
-}
-
-a:visited {
-	color: #800080;
+    color: black;
+    text-decoration: none;
 }
 
 a:hover,
@@ -641,6 +663,44 @@ textarea {
 # Layouts
 --------------------------------------------------------------*/
 
+/* Header
+--------------------------------------------- */
+.site-header {
+    background-color: var(--clr-light);
+}
+.site-header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer
+--------------------------------------------- */
+
+/* Front Page
+--------------------------------------------- */
+
+/* About
+--------------------------------------------- */
+
+/* Single
+--------------------------------------------- */
+
+/* Utility
+--------------------------------------------- */
+.hidden {
+    display: none !important;
+}
+.container {
+    margin: auto;
+    width: min(90%, 70.5rem);
+}
+.container-text {
+    width: min(95%, 75ch);
+    margin: auto;
+}
+
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
@@ -649,7 +709,7 @@ textarea {
 --------------------------------------------- */
 .main-navigation {
 	display: block;
-	width: 100%;
+	/* width: 100%; */
 }
 
 .main-navigation ul {
@@ -657,6 +717,14 @@ textarea {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+    position: fixed;
+    top: 8.67em;
+    left: 0%;
+    width: 100%;
+    text-align: center;
+    background-color: var(--clr-light);
+    /* transition: 0.3s; */
+    box-shadow: 0 4em 3em rgba(0, 0, 0, 0.05);
 }
 
 .main-navigation ul ul {
@@ -690,11 +758,39 @@ textarea {
 
 .main-navigation li {
 	position: relative;
+    width: 100%;
+    margin: 2em 0;
 }
 
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+    margin: auto;
+}
+
+.hamburger {
+    cursor: pointer;
+}
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #101010;
+}
+
+.hamburger.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .hamburger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Small menu. */
@@ -709,8 +805,13 @@ textarea {
 		display: none;
 	}
 
-	.main-navigation ul {
+	.main-navigation ul,
+    .main-navigation.toggled ul{
 		display: flex;
+        position: relative;
+        gap: 2em; /* Needs fall back for older browsers */
+        top: 0;
+        box-shadow: none;
 	}
 }
 
