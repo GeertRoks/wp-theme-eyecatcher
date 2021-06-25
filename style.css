@@ -669,6 +669,8 @@ textarea {
 --------------------------------------------- */
 .site-header {
     background-color: var(--clr-light);
+    position: sticky;
+    top: 0;
 }
 .site-header .container {
     display: flex;
