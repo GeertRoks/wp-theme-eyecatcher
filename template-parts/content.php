@@ -10,6 +10,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+	<?php eyecatcher_post_thumbnail(); ?>
+
+    <div class="post-content">
+
 	<header class="entry-header">
 		<?php
 		if ( is_singular() ) :
@@ -23,13 +28,12 @@
 			<div class="entry-meta">
 				<?php
 				eyecatcher_posted_on();
-				eyecatcher_posted_by();
+				/* eyecatcher_posted_by(); */
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php eyecatcher_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php
@@ -58,6 +62,9 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php eyecatcher_entry_footer(); ?>
+        <?
+        /* php eyecatcher_entry_footer(); */ 
+?>
 	</footer><!-- .entry-footer -->
+    </div>
 </article><!-- #post-<?php the_ID(); ?> -->

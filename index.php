@@ -16,20 +16,35 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
-<!--
+        <section id="about">
+            <div class="container">
+                <div class="about-text">
+                    <h1>Geert Roks</h1>
+                    <h3>Maker</h3>
+                    <p>Amet cupiditate error voluptas quaerat possimus veniam! Minus blanditiis delectus rerum obcaecati delectus, asperiores cumque quae. Esse rerum delectus explicabo itaque nam ut dolore Atque esse aut possimus mollitia tempora?</p>
+                    <div class="btn-wrapper">
+                        <div class="btn btn-dark">Check out my work</div>
+                        <div class="btn btn-light">Get in contact</div>
+                    </div>
+                </div>
+                <div class="about-img">
+                    <img src="https://source.unsplash.com/featured/?face,creative,portrait">
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <div class="gallery gallery-columns-3">
 		<?php
 		if ( have_posts() ) :
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
-
+            $count = 0;
 			/* Start the Loop */
-			while ( have_posts() ) :
+			while ( have_posts() && $count < 6 ) :
+                ?>
+            <div class="gallery-item">
+                <?php
 				the_post();
 
 				/*
@@ -38,7 +53,10 @@ get_header();
 				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 				 */
 				get_template_part( 'template-parts/content', get_post_type() );
-
+                ?>
+                    </div>
+                <?php
+                $count++;
 			endwhile;
 
 			the_posts_navigation();
@@ -49,9 +67,18 @@ get_header();
 
 		endif;
 		?>
--->
+
+                </div>
+<div class="btn-wrapper btn-wrapper-center">
+                <div class="btn btn-light">See more</div>
+</div>
+            </div>
+        </section>
+
+
 	</main><!-- #main -->
 
 <?php
 /* get_sidebar(); */
 get_footer();
+?>
