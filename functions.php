@@ -178,3 +178,66 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Custom post types
+ */
+// Change dashboard Posts to Blog
+function cp_change_post_object() {
+    $get_post_type = get_post_type_object('post');
+    $labels = $get_post_type->labels;
+        $labels->name = 'Blog';
+        $labels->singular_name = 'Blog';
+        $labels->add_new = 'Add Blog post';
+        $labels->add_new_item = 'Add Blog post';
+        $labels->edit_item = 'Edit Blog post';
+        $labels->new_item = 'New Blog post';
+        $labels->view_item = 'View Blog post';
+        $labels->search_items = 'Search Blog post';
+        $labels->not_found = 'No Blog posts found';
+        $labels->not_found_in_trash = 'No Blog posts found in Trash';
+        $labels->all_items = 'All Blog posts';
+        $labels->menu_name = 'Blog';
+        $labels->name_admin_bar = 'Blog';
+    $get_post_type->menu_icon = 'dashicons-welcome-write-blog';
+    $get_post_type->menu_position = 6;
+}
+add_action( 'init', 'cp_change_post_object' );
+
+function eyecatcher_portfolio_post_type() {
+    $labels = array(
+        'name' => 'Portfolio',
+        'singular_name' => 'Project',
+        'add_new' => 'Add Project',
+        'all_items' => 'All Projects',
+        'add_new_item' => 'Add Project',
+        'edit_item' => 'Edit Project',
+        'new_item' => 'New Project',
+        'view_item' => 'View Project',
+        'search_item' => 'Search Portfolio',
+        'not_found' => 'No projects found',
+        'not_found_in_trash' => 'No projects found in trash'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'publicly_queryable' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail',
+            'revisions',
+        ),
+        'taxonomies' => array('category', 'post_tag'),
+        'menu_icon' => 'dashicons-images-alt2',
+        'menu_position' => 4,
+        'exclude_from_search' => false
+    );
+    register_post_type('portfolio', $args);
+}
+add_action('init', 'eyecatcher_portfolio_post_type');
