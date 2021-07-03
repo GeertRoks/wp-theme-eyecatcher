@@ -23,8 +23,8 @@ get_header();
                     <h3>Maker</h3>
                     <p>Amet cupiditate error voluptas quaerat possimus veniam! Minus blanditiis delectus rerum obcaecati delectus, asperiores cumque quae. Esse rerum delectus explicabo itaque nam ut dolore Atque esse aut possimus mollitia tempora?</p>
                     <div class="btn-wrapper">
-                        <div class="btn btn-dark">Check out my work</div>
-                        <div class="btn btn-light">Get in contact</div>
+                        <a href="/portfolio"> <div class="btn btn-dark">Check out my work</div> </a>
+                        <a href="/contact"> <div class="btn btn-light">Get in contact</div> </a>
                     </div>
                 </div>
                 <div class="about-img">
@@ -36,42 +36,37 @@ get_header();
         <section id="portfolio">
             <div class="container">
                 <div class="gallery gallery-columns-3">
-		<?php
-		if ( have_posts() ) :
-
-            $count = 0;
-			/* Start the Loop */
-			while ( have_posts() && $count < 6 ) :
-                ?>
-            <div class="gallery-item">
                 <?php
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+			    /* Start the Loop */
+                $loop = new WP_Query(
+                    array(
+                        'post_type' => 'portfolio', // This is the name of your post type - change this as required,
+                        'posts_per_page' => 6 // This is the amount of posts per page you want to show
+                    )
+                );
+                /* echo $loop; */
+                while ( $loop->have_posts() ) : $loop->the_post();
                 ?>
+                    <div class="gallery-item">
+                    <?php
+				    /*
+				     * Include the Post-Type-specific template for the content.
+				     * If you want to override this in a child theme, then include a file
+				     * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+				     */
+				    get_template_part( 'template-parts/content', get_post_type() );
+                    ?>
                     </div>
                 <?php
-                $count++;
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
+		        endwhile;
+                wp_reset_postdata();
+		        the_posts_navigation();
+		        ?>
 
                 </div>
-<div class="btn-wrapper btn-wrapper-center">
-                <div class="btn btn-light">See more</div>
-</div>
+                <div class="btn-wrapper btn-wrapper-center">
+                    <a href="/portfolio"> <div class="btn btn-light">See more</div> </a>
+                </div>
             </div>
         </section>
 
