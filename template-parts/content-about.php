@@ -12,21 +12,13 @@
 <article id="about-main" <?php post_class(); ?>>
     <section class="about-biography">
         <div class="about-biography-left">
-        	<header class="entry-header">
-        		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+        	<header class="about-biography--header entry-header">
+                <h1 class="section__title section__title--about"> <?php the_title(); ?> </h1> 
+                <p class="section__subtitle section__subtitle--about"><?php /*the_secondary_title();*/ ?></p>
         	</header><!-- .entry-header -->
 
-        	<div class="entry-content">
-        		<?php
-        		the_content();
-        
-        		wp_link_pages(
-        			array(
-        				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'eyecatcher' ),
-        				'after'  => '</div>',
-        			)
-        		);
-        		?>
+        	<div class="about-biography--content entry-content">
+        		<?php the_content(); ?>
         	</div><!-- .entry-content -->
 
         	<?php if ( get_edit_post_link() ) : ?>
@@ -54,4 +46,4 @@
         </div>
     	<?php eyecatcher_post_thumbnail(); ?>
     </section>
-</article><!-- #post-<?php the_ID(); ?> -->
+</article><!-- #about-main -->

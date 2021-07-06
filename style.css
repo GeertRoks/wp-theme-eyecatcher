@@ -743,26 +743,32 @@ textarea {
 
 /* About
 --------------------------------------------- */
-.about-biography {
-    min-height: 25em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: top;
-    flex-wrap: nowrap;
-}
-.about-biography-left {
-    padding: 0 1em;
-}
 
 .about-biography .post-thumbnail {
-    height: 25em;
-    width: 30em;
+    width: 100%;
     object-fit: cover;
-    overflow: hidden;
-    float: right;
-    padding: 0 1em;
-    flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+    .about-biography {
+        min-height: 25em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: top;
+        flex-wrap: nowrap;
+    }
+    .about-biography-left {
+        padding: 0 1em;
+    }
+    .about-biography .post-thumbnail {
+        height: 25em;
+        width: 30em;
+        object-fit: cover;
+        overflow: hidden;
+        padding: 0 1em;
+        flex-shrink: 0;
+    }
 }
 
 /* Projects
