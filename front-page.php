@@ -35,7 +35,7 @@ get_header();
 
         <section id="portfolio">
             <div class="container">
-                <div class="gallery gallery-columns-3">
+                <div class="gallery gallery-columns-3-responsive">
                 <?php
 			    /* Start the Loop */
                 $loop = new WP_Query(
@@ -47,14 +47,14 @@ get_header();
                 /* echo $loop; */
                 while ( $loop->have_posts() ) : $loop->the_post();
                 ?>
-                    <div class="gallery-item">
+                    <div class="gallery-item card">
                     <?php
 				    /*
 				     * Include the Post-Type-specific template for the content.
 				     * If you want to override this in a child theme, then include a file
 				     * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 				     */
-				    get_template_part( 'template-parts/content', get_post_type() );
+				    get_template_part( 'template-parts/content', 'card' );
                     ?>
                     </div>
                 <?php

@@ -22,13 +22,13 @@ get_header();
 				/* the_archive_description( '<div class="archive-description">', '</div>' ); */
 				?>
 			</header><!-- .page-header -->
-<div class="gallery gallery-columns-3">
+<div class="gallery gallery-columns-3-responsive">
 
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
 ?>
-<div class="gallery-item">
+<div class="gallery-item card">
 <?php
 
 				the_post();
@@ -38,7 +38,7 @@ get_header();
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+				get_template_part( 'template-parts/content', 'card' );
 ?>
 </div>
 <?php
